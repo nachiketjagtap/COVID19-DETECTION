@@ -102,7 +102,128 @@ def View():
                     """.format(SR, UD, FN, LN, GD, TP, CC, RN, SB, PP, FT, LL, ZZ, SS))
             except Exception as E:
                 print("Exception : %s" % E)
+        elif p != "STANSFORLIFE":
+            print("You Entered Wrong Information.")
+            exit(0)
+        else:
+            print("Exception.")
+    elif ch.title() == "Client":
+        udd = int(input("Enter your UserID >"))
+        sql = "SELECT * FROM ADMIN WHERE USER_ID = %d ;" % (udd)
+        try:
+            cursor.execute(sql)
+            res2 = cursor.fetchall()
+            for record in res2:
+                SR = record[0]
+                UD = record[1]
+                FN = record[2]
+                LN = record[3]
+                GD = record[4]
+                TP = record[5]
+                CC = record[6]
+                RN = record[7]
+                SB = record[8]
+                PP = record[9]
+                FT = record[10]
+                ZZ = record[11]
+                LL = record[12]
+                SS = record[13]
+                print("""
+    SHOWING INFORMATION ABOUT CLIENT {1} :
+                BASIC INFORMATION -
+                    * SERIAL NUMBER : {0}
+                    * USER ID : {1}
+                    * NAME : {2} {3}
+                    * GENDER : {4}
+                    * LOCATION : {11}
+                THE SYMPTOMS -
+                    * LAST RECORDED TEMPERATURE : {5}
+                    * COUGH : {6}
+                    * RUNNING NOSE : {7}
+                    * SHORT OF BREATH : {8}
+                OTHER AFFECTING FACTORS :
+                    * PREGNANCY STATUS : {9}
+                    * FOREIGN TRAVEL HISTORY : {10}
+                ABOUT ZONE AND SUSPECTING :
+                    * ZONE : {12}
+                    * SUSPECT : {13} 
+                """.format(SR, UD, FN, LN, GD, TP, CC, RN, SB, PP, FT, LL, ZZ, SS))
 
 
-Insert_info()
-View()
+        except Exception as E:
+            print("Exception : %s" % E)
+    elif ch.title() == "Organ":
+        print("Here Showing You Data Of Users.")
+        org_nm = input("Please Enter Name of Your Organization.")
+        locas = input("Please Enter Location of Users in Which You are Interested To >")
+        sql3 = "SELECT * FROM ADMIN WHERE LOCATION = '%s' ;" % locas
+        try:
+            cursor.execute(sql3)
+            res3 = cursor.fetchall()
+            print("INFORMATION GATHERED BY COVID-19 DETECTION SYSTEM \n\n INFORMATION MUST BE USED IN GOOD MANNER.")
+            for record in res3:
+                SR = record[0]
+                GD = record[4]
+                TP = record[5]
+                CC = record[6]
+                RN = record[7]
+                SB = record[8]
+                PP = record[9]
+                FT = record[10]
+                ZZ = record[11]
+                LL = record[12]
+                print("""
+        
+                    BASIC INFORMATION -
+                        * GENDER : {0}
+                        * LOCATION : {7}
+                    THE SYMPTOMS -
+                        * LAST RECORDED TEMPERATURE : {1}
+                        * COUGH : {2}
+                        * RUNNING NOSE : {3}
+                        * SHORT OF BREATH : {4}
+                    OTHER AFFECTING FACTORS :
+                        * PREGNANCY STATUS : {5}
+                        * FOREIGN TRAVEL HISTORY : {6}
+                    ABOUT ZONE  :
+                        * ZONE : {8}
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                 INFORMATION FOR : {9} ORGANISATION 
+                 INFORMATION ABOUT : STATUS OF COVID-19 PATIENTS IN {7} LOCATION.
+                 
+                 
+                 And regards,
+                 TEAM STANS <3    
+                 
+                 
+                 *THANK YOU*     
+                    """.format(GD, TP, CC, RN, SB, PP, FT, LL, ZZ, org_nm))
+
+
+        except Exception as E:
+            print("Exception : %s" % E)
+
+
+while True:
+    c12 = int(input("""PLEASE 
+
+            * ENTER 1 FOR INSERTING YOUR INFORMATION TO THE SYSTEM 
+            * ENTER 2 TO FETCH INFORMATION FROM THE SYSTEM (AS ADMIN / AS CLIENT / AS EXTERNAL ORGANISATION )
+            * ENTER 3 TO LEAVE THIS APPLICATION
+
+            YOUR CHOICE(1/2/3) > """))
+    if c12 == 1:
+        Insert_info()
+    elif c12 == 2:
+        View()
+    elif c12 == 3:
+        exit(0)
+    else:
+        "You Have Entered Wrong Choice ! Please try Inserting Right Information in Next Chance ! "
+        break
