@@ -1,8 +1,9 @@
-drop table symptoms;
-drop table suspects;
-drop table zone_select;
-drop table basic_info;
 drop view g_zone;
 drop view y_zone;
 drop view r_zone;
 drop sequence INCREMENT_SR; 
+drop trigger TRIGGER1;
+drop table symptoms;
+drop table suspects;
+drop table zone_select;
+drop table basic_info;
